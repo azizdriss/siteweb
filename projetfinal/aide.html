@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <link rel="stylesheet" type="text/css" media="screen" href="../projetfinal/final.css" />
+        <script src="https://www.gstatic.com/firebasejs/5.2.0/firebase.js"></script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+          <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+          <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+            <title>Enseignement supérieur</title>
+</head>
+<body>
+        
+        
+        <nav class="navbar navbar-inverse navbar-fixed-top" >
+          <div class="container-fluid">
+            <div class="navbar-header">
+              <a class="navbar-brand" href="#">W</a>
+            </div>
+            <ul class="nav navbar-nav">
+              <li class="active"><a href="C:\Users\Hp\Desktop\gomycode\projetfinal\final.html">Accueil</a></li>
+              <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">Spécialités
+                    <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                      <li><a href="medecine.html">Medecine</a></li>
+                      <li><a href="ingenieurie.html">Informatique</a></li>
+                      <li><a href="economie.html">Economie</a></li>
+                      <li><a href="Technique.html">Technique</a></li>
+                    </ul>
+                </li> 
+              <li  class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="">Bourse
+                      <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                      <li><a href="#">Bourse européene</a></li>
+                      <li><a href="#">BGF</a></li>
+                      <li><a href="#">Bourse américaine</a></li>
+                    </ul>
+              </li>
+              <li><a href'#'>Aide</a></li>
+              <li><a href="#">A propos de nous</a></li>            
+            </ul>
+            <form class="navbar-form navbar-left" action="/action_page.php">
+              <div class="input-group">
+                <input type="text" class="form-control" placeholder="Search" name="search">
+                <div class="input-group-btn">
+                  <button class="btn btn-default" type="submit">
+                    <i class="glyphicon glyphicon-search"></i>
+                  </button>
+                </div>
+              </div>
+            </form>
+            <ul class="nav navbar-nav navbar-right">
+                    <li><a href="C:\Users\Hp\Desktop\gomycode\login\SignUp.html"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+                    <li><a href="C:\Users\Hp\Desktop\gomycode\projetfinal\login.html"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                  </ul>
+          </div>
+        </nav><br><br><br><br>
+        <style>
+                body {font-family: Arial, Helvetica, sans-serif;}
+                
+                input[type=text], select, textarea {
+                    width: 100%;
+                    padding: 12px;
+                    border: 1px solid #ccc;
+                    border-radius: 4px;
+                    box-sizing: border-box;
+                    margin-top: 6px;
+                    margin-bottom: 16px;
+                    resize: vertical;
+                }
+                
+                input[type=submit] {
+                    background-color: #4CAF50;
+                    color: white;
+                    padding: 12px 20px;
+                    border: none;
+                    border-radius: 4px;
+                    cursor: pointer;
+                }
+                
+                input[type=submit]:hover {
+                    background-color: #45a049;
+                }
+                
+                .container {
+                    border-radius: 5px;
+                    background-color: #f2f2f2;
+                    padding: 20px;
+                }
+                #ob{
+                    display: none;
+                }
+                </style>
+                
+                
+                
+                
+                <div id='ob' class="container" >
+                  <form id="keywords">
+                    <label for="subject">Subject</label>
+                    <textarea id="subject" name="subject" placeholder="Write something.." style="height:200px"></textarea>
+                
+                    <input type="submit" value="Submit">
+                  </form>
+                </div>
+                
+
+        <script>
+            var jargonMaths = ['problèmes', "exponentiel", "maths" ,"géométrie","calcul","science"];
+            var jargonInfo = ['variables', "problèmes", 'code'];
+            var jargonTechnique = ['technique'];
+            var jargonMedecine = ['Medecine', "Science", "SVT"];
+            var compteurs = [0,0,0,0];
+        
+            var a=confirm ("as-tu besoin d'aide ?");
+            if(a==true){
+                document.querySelector('#ob').style.display='block';
+            }
+
+            document.getElementById('keywords').addEventListener('submit', lawij);
+
+            function lawij(e){
+                e.preventDefault();
+                var keywords = document.getElementById('subject').value.split(" ");
+                // comparaison entre keyword et les jargons
+                // indexof , ta3mel compteur yatla3 3ala kol kilma mawjoud fi keywords
+                // w mawjoud fi les jargons, ba3d akthir compteur howa li tikhdim 3lih.
+                for (let index = 0; index < keywords.length; index++) {
+                  if(jargonInfo.indexOf(keywords[index])!= -1){ compteurs[1]++};
+                  if(jargonMaths.indexOf(keywords[index])!= -1){ compteurs[0]++};
+                  if(jargonMedecine.indexOf(keywords[index])!= -1){ compteurs[3]++};
+                  if(jargonTechnique.indexOf(keywords[index])!= -1){ compteurs[2]++};
+                }
+                
+                let result = Math.max(compteurs);
+                console.log(result);
+                switch(result){
+                  case 0: 
+                    console.log("math");
+                    break;
+                  case 1:
+                    console.log("info");
+                    break;
+                  case 2:
+                    console.log('technique');
+                    break;
+                  case 3:
+                    console.log("medecine");
+                    break;
+                }
+                
+            
+            }
+
+            
+        </script>
+
+
+        
+    </body>
+    </html>
+<script src="../projetfinal/jav.js"></script>
+</body>
+</html>
